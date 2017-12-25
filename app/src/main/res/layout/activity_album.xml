@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/c1_2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="3dp"
+            android:drawableStart="@drawable/ic_back"
+            android:gravity="left|center_vertical"
+            android:text="@string/back"
+            android:textColor="@color/c3_3"
+            android:textSize="@dimen/title_font_size" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/top_head_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="相册"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/confirm"
+            style="@style/top_head_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:background="@drawable/selector_7_corner_c1_2_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="确定" />
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/c1_1"
+        android:id="@+id/recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
