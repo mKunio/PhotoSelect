@@ -27,6 +27,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .start(this);
                 break;
             case R.id.album:
+                AlbumOperation operation = new AlbumOperation.Builder()
+                        .needShowVideoIcon(true)
+                        .marginSelectedSign(20)
+                        .maxNum(3)
+                        .selectResId(R.drawable.checkbox)
+                        .unSelectResId(R.drawable.checkbox_un)
+                        .needShowVideo(false)
+                        .build();
+                PhotoPicker.getAlbum()
+                        .requestCode(4)
+                        .albumOperation(operation)
+                        .start(this);
                 break;
         }
     }

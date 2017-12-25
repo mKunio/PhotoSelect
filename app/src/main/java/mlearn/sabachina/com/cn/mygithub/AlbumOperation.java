@@ -33,12 +33,12 @@ public class AlbumOperation implements Parcelable {
     }
 
     public static final class Builder {
-        boolean needShowVideo;
-        boolean needShowVideoIcon;
-        int maxNum;
-        int selectResId;
-        int unSelectResId;
-        int marginSelectedSign = 10;
+        private boolean needShowVideo;
+        private boolean needShowVideoIcon;
+        private int maxNum;
+        private int selectResId;
+        private int unSelectResId;
+        private int marginSelectedSign = 10;
 
         public Builder() {
             needShowVideo = false;
@@ -55,6 +55,36 @@ public class AlbumOperation implements Parcelable {
             selectResId = operation.selectResId;
             unSelectResId = operation.unSelectResId;
             marginSelectedSign = operation.marginSelectedSign;
+        }
+
+        public Builder needShowVideo(boolean needShowVideo) {
+            this.needShowVideo = needShowVideo;
+            return this;
+        }
+
+        public Builder needShowVideoIcon(boolean needShowVideoIcon) {
+            this.needShowVideoIcon = needShowVideoIcon;
+            return this;
+        }
+
+        public Builder maxNum(int maxNum) {
+            this.maxNum = maxNum;
+            return this;
+        }
+
+        public Builder selectResId(int selectResId) {
+            this.selectResId = selectResId;
+            return this;
+        }
+
+        public Builder unSelectResId(int unSelectResId) {
+            this.unSelectResId = unSelectResId;
+            return this;
+        }
+
+        public Builder marginSelectedSign(int marginSelectedSign) {
+            this.marginSelectedSign = marginSelectedSign;
+            return this;
         }
 
         public AlbumOperation build() {
