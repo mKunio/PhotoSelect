@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.album:
                 AlbumOperation operation = new AlbumOperation.Builder()
-                        .needShowVideoIcon(true)
+                        .needShowCameraIcon(false)
                         .marginSelectedSign(20)
                         .maxNum(3)
                         .selectResId(R.drawable.checkbox)

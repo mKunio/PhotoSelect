@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class AlbumOperation implements Parcelable {
     final boolean needShowVideo;
-    final boolean needShowVideoIcon;
+    final boolean needShowCameraIcon;
     final int maxNum;
     final int selectResId;
     final int unSelectResId;
@@ -21,7 +21,7 @@ public class AlbumOperation implements Parcelable {
 
     public AlbumOperation(Builder builder) {
         needShowVideo = builder.needShowVideo;
-        needShowVideoIcon = builder.needShowVideoIcon;
+        needShowCameraIcon = builder.needShowCameraIcon;
         maxNum = builder.maxNum;
         selectResId = builder.selectResId;
         unSelectResId = builder.unSelectResId;
@@ -34,7 +34,7 @@ public class AlbumOperation implements Parcelable {
 
     public static final class Builder {
         private boolean needShowVideo;
-        private boolean needShowVideoIcon;
+        private boolean needShowCameraIcon;
         private int maxNum;
         private int selectResId;
         private int unSelectResId;
@@ -42,7 +42,7 @@ public class AlbumOperation implements Parcelable {
 
         public Builder() {
             needShowVideo = false;
-            needShowVideoIcon = true;
+            needShowCameraIcon = true;
             maxNum = 1;
             selectResId = R.drawable.checkbox;
             unSelectResId = R.drawable.checkbox_un;
@@ -50,7 +50,7 @@ public class AlbumOperation implements Parcelable {
 
         public Builder(AlbumOperation operation) {
             needShowVideo = operation.needShowVideo;
-            needShowVideoIcon = operation.needShowVideoIcon;
+            needShowCameraIcon = operation.needShowCameraIcon;
             maxNum = operation.maxNum;
             selectResId = operation.selectResId;
             unSelectResId = operation.unSelectResId;
@@ -62,8 +62,8 @@ public class AlbumOperation implements Parcelable {
             return this;
         }
 
-        public Builder needShowVideoIcon(boolean needShowVideoIcon) {
-            this.needShowVideoIcon = needShowVideoIcon;
+        public Builder needShowCameraIcon(boolean needShowCameraIcon) {
+            this.needShowCameraIcon = needShowCameraIcon;
             return this;
         }
 
@@ -100,7 +100,7 @@ public class AlbumOperation implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeByte(this.needShowVideo ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.needShowVideoIcon ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.needShowCameraIcon ? (byte) 1 : (byte) 0);
         dest.writeInt(this.maxNum);
         dest.writeInt(this.selectResId);
         dest.writeInt(this.unSelectResId);
@@ -109,7 +109,7 @@ public class AlbumOperation implements Parcelable {
 
     protected AlbumOperation(Parcel in) {
         this.needShowVideo = in.readByte() != 0;
-        this.needShowVideoIcon = in.readByte() != 0;
+        this.needShowCameraIcon = in.readByte() != 0;
         this.maxNum = in.readInt();
         this.selectResId = in.readInt();
         this.unSelectResId = in.readInt();
