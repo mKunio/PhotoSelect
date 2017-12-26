@@ -31,9 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .needShowCameraIcon(false)
                         .marginSelectedSign(20)
                         .maxNum(3)
+                        .column(3)
+                        .style(Style.PICTURE)
+                        .location(IconLocation.TOP_RIGHT)
                         .selectResId(R.drawable.checkbox)
                         .unSelectResId(R.drawable.checkbox_un)
-                        .needShowVideo(false)
                         .build();
                 PhotoPicker.getAlbum()
                         .requestCode(4)
