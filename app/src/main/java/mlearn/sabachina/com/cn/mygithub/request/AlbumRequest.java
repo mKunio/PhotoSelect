@@ -42,6 +42,9 @@ public class AlbumRequest implements AlbumTarget {
 
     private Intent getDefaultIntent(Context context) {
         Intent intent = new Intent(context, AlbumActivity.class);
+        if (albumOperation == null){
+            albumOperation = new AlbumOperation.Builder().build();
+        }
         intent.putExtra("albumOperation",albumOperation);
         return intent;
     }

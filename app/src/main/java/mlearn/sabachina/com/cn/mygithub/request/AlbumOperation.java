@@ -90,7 +90,7 @@ public class AlbumOperation implements Parcelable {
             maxNum = 1;
             selectResId = R.drawable.checkbox;
             unSelectResId = R.drawable.checkbox_un;
-            marginSelectedSign = 15;
+            marginSelectedSign = 30;
             style = Style.PICTURE;
             column = 3;
             location = IconLocation.TOP_RIGHT;
