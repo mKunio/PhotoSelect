@@ -65,15 +65,32 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
-    <GridView
-        android:id="@+id/photo_grid_view"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/album_grid_bg"
-        android:numColumns="3"
-        android:verticalSpacing="5dp" />
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/photo_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@color/album_grid_bg"
+            android:numColumns="3"
+            android:verticalSpacing="5dp" />
+
+        <View
+            android:id="@+id/grid_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33333232"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/photo_folder_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scrollbars="none"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>
