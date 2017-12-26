@@ -1,4 +1,4 @@
-package mlearn.sabachina.com.cn.mygithub;
+package mlearn.sabachina.com.cn.mygithub.util;
 
 import android.net.Uri;
 import android.os.Environment;

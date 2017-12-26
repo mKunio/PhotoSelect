@@ -1,4 +1,4 @@
-package mlearn.sabachina.com.cn.mygithub;
+package mlearn.sabachina.com.cn.mygithub.request;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
  * Created by zhc on 2017/12/25 0025.
  */
 
-interface CameraTarget {
+public interface CameraTarget {
     CameraTarget uri(Uri uri);
 
     CameraTarget requestCode(int requestCode);

@@ -1,8 +1,15 @@
-package mlearn.sabachina.com.cn.mygithub;
+package mlearn.sabachina.com.cn.mygithub.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import mlearn.sabachina.com.cn.mygithub.request.AlbumOperation;
+import mlearn.sabachina.com.cn.mygithub.util.FileUtil;
+import mlearn.sabachina.com.cn.mygithub.request.IconLocation;
+import mlearn.sabachina.com.cn.mygithub.request.PhotoPicker;
+import mlearn.sabachina.com.cn.mygithub.R;
+import mlearn.sabachina.com.cn.mygithub.request.Style;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

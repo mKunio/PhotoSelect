@@ -1,8 +1,10 @@
-package mlearn.sabachina.com.cn.mygithub;
+package mlearn.sabachina.com.cn.mygithub.request;
 
 import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import mlearn.sabachina.com.cn.mygithub.R;
 
 /**
  * Created by zhc on 2017/12/25 0025.
@@ -45,7 +47,7 @@ public class AlbumOperation implements Parcelable {
      */
     private final IconLocation location;
     /**
-     * The color of the selected logo
+     * The color of selected logo
      * When the Style is set to DIGIT, it takes effect
      *
      * @see Style

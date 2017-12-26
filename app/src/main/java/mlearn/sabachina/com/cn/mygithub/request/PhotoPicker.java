@@ -1,7 +1,9 @@
-package mlearn.sabachina.com.cn.mygithub;
+package mlearn.sabachina.com.cn.mygithub.request;
 
-import android.app.Activity;
-import android.app.Fragment;
+import mlearn.sabachina.com.cn.mygithub.request.AlbumRequest;
+import mlearn.sabachina.com.cn.mygithub.request.AlbumTarget;
+import mlearn.sabachina.com.cn.mygithub.request.CameraRequest;
+import mlearn.sabachina.com.cn.mygithub.request.CameraTarget;
 
 /**
  * Created by zhc on 2017/12/25 0025.

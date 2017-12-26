@@ -1,4 +1,4 @@
-package mlearn.sabachina.com.cn.mygithub;
+package mlearn.sabachina.com.cn.mygithub.activity;
 
 import android.support.v7.app.AppCompatActivity;
 
