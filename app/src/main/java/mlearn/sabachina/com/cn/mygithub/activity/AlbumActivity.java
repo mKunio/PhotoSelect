@@ -43,6 +43,7 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
         back.setOnClickListener(this);
         chooseFolder.setOnClickListener(this);
         confirm.setOnClickListener(this);
+
     }
 
     @Override
