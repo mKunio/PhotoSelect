@@ -73,10 +73,10 @@
             android:id="@+id/photo_grid_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
             android:background="@color/album_grid_bg"
-            android:numColumns="3"
-            android:verticalSpacing="5dp" />
+            android:numColumns="4"
+            android:horizontalSpacing="3dp"
+            android:verticalSpacing="3dp" />
 
         <View
             android:id="@+id/grid_bg"
@@ -86,10 +86,11 @@
             android:visibility="gone" />
 
         <ListView
+            android:divider="@color/text_pressed"
+            android:dividerHeight="1dp"
             android:id="@+id/photo_folder_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_height="320dp"
             android:scrollbars="none"
             android:visibility="gone" />
     </FrameLayout>

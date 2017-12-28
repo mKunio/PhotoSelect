@@ -11,25 +11,17 @@ import android.provider.MediaStore;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 
-import java.io.File;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import mlearn.sabachina.com.cn.mygithub.bean.Photo;
 
-import static android.provider.BaseColumns._ID;
-import static android.provider.MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME;
-import static android.provider.MediaStore.MediaColumns.DATA;
-import static android.provider.MediaStore.MediaColumns.TITLE;
-
-
 public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor> {
     private Context context;
-    private PhotoSuccessCallback<Map<String,Photo>> resultCallback;
+    private PhotoSuccessCallback<Photo> resultCallback;
     private final String[] IMAGE_PROJECTION = {
             MediaStore.Images.Media._ID,
             MediaStore.Images.Media.DATA,
@@ -37,7 +29,7 @@ public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Curso
             MediaStore.Images.Media.TITLE
     };
 
-    public PhotoLoaderCallbacks(Context context, PhotoSuccessCallback<Map<String,Photo>> resultCallback) {
+    public PhotoLoaderCallbacks(Context context, PhotoSuccessCallback<Photo> resultCallback) {
         this.context = context;
         this.resultCallback = resultCallback;
     }
@@ -52,33 +44,37 @@ public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Curso
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
         if (data == null) return;
-        List<Photo> photos = new ArrayList<>();
-        List<Map<String,Photo>> folder = new ArrayList<>();
-
+        Map<String, List<Photo>> dirPhoto = new LinkedHashMap<>();
+        dirPhoto.put("全部图片", new ArrayList<Photo>());
         while (data.moveToNext()) {
-
-            int imageId = data.getInt(data.getColumnIndexOrThrow(_ID));
+//            int imageId = data.getInt(data.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
             //图片所属文件夹名称
-            String name = data.getString(data.getColumnIndexOrThrow(BUCKET_DISPLAY_NAME));
+            String folderName = data.getString(data.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME));
 
-            String path = data.getString(data.getColumnIndexOrThrow(DATA));
-            String fileName = data.getString(data.getColumnIndexOrThrow(TITLE));
-
-            Photo photo = new Photo(imageId, fileName, path);
-
-            if (!photos.contains(photo)) {
-                //只需要不是GIF图
-                File file = new File(path);
-                if (file.exists()) {
-                    if (!path.toLowerCase().endsWith("gif")) {
+            String filePath = data.getString(data.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+            String fileName = data.getString(data.getColumnIndexOrThrow( MediaStore.Images.Media.TITLE));
+            //过滤GIF图
+            if (!filePath.toLowerCase().endsWith("gif")) {
+                Photo photo = new Photo(fileName, filePath);
+                List<Photo> allPhoto = dirPhoto.get("全部图片");
+                if (!allPhoto.contains(photo)) {
+                    allPhoto.add(photo);
+                }
+                if (dirPhoto.containsKey(folderName)) {
+                    List<Photo> photos = dirPhoto.get(folderName);
+                    if (!photos.contains(photo)) {
                         photos.add(photo);
                     }
+                } else {
+                    List<Photo> newPhotoList = new ArrayList<>();
+                    newPhotoList.add(photo);
+                    dirPhoto.put(folderName, newPhotoList);
                 }
             }
         }
 
         if (resultCallback != null) {
-            resultCallback.onResultCallback(folder);
+            resultCallback.onResultCallback(dirPhoto);
         }
     }
 
