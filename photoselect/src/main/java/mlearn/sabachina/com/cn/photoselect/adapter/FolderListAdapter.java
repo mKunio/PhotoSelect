@@ -5,10 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +77,7 @@ public class FolderListAdapter extends BaseAdapter {
         buffer.append(photos.size());
         buffer.append(")");
         viewHolder.folderName.setText(buffer);
-//        Glide.with(context).load(photos.get(0).getFilePath()).asBitmap().error(R.drawable.image_holder).into(viewHolder.imageView);
+        Glide.with(context).load(photos.get(0).getFilePath()).asBitmap().error(R.drawable.image_holder).into(viewHolder.imageView);
         return convertView;
     }
 

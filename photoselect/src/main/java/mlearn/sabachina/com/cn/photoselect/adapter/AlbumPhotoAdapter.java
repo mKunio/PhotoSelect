@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,8 +84,8 @@ public class AlbumPhotoAdapter extends BaseAdapter {
     private void notifySingleItemView(Photo photo, ViewHolder holder) {
         if (albumOperation.getStyle() == CheckMarkStyle.PICTURE) {
             int resourceId = photo.isSelected() ? albumOperation.getSelectResId() : albumOperation.getUnSelectResId();
-//            Glide.with(activity).load(resourceId).asBitmap()
-//                    .placeholder(resourceId).error(resourceId).into(holder.checkbox);
+            Glide.with(activity).load(resourceId).asBitmap()
+                    .placeholder(resourceId).error(resourceId).into(holder.checkbox);
         } else {
             photo.setNumber(selectPhoto.size());
             holder.indicatorView.setText(photo.getNumber());
@@ -143,12 +145,12 @@ public class AlbumPhotoAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Photo photo = getItem(position);
-//        Glide.with(activity).load(photo.getFilePath()).asBitmap()
-//                .placeholder(R.drawable.image_holder).error(R.drawable.image_holder).into(viewHolder.photo);
+        Glide.with(activity).load(photo.getFilePath()).asBitmap()
+                .placeholder(R.drawable.image_holder).error(R.drawable.image_holder).into(viewHolder.photo);
         if (checkMarkStyle == CheckMarkStyle.PICTURE) {
-//            int resourceId = photo.isSelected() ? albumOperation.getSelectResId() : albumOperation.getUnSelectResId();
-//            Glide.with(activity).load(resourceId).asBitmap()
-//                    .placeholder(R.drawable.checkbox_un).error(R.drawable.checkbox_un).into(viewHolder.checkbox);
+            int resourceId = photo.isSelected() ? albumOperation.getSelectResId() : albumOperation.getUnSelectResId();
+            Glide.with(activity).load(resourceId).asBitmap()
+                    .placeholder(R.drawable.checkbox_un).error(R.drawable.checkbox_un).into(viewHolder.checkbox);
         } else {
             viewHolder.indicatorView.setText(photo.getNumber());
         }
