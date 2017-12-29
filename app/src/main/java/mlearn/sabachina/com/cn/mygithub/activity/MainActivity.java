@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import mlearn.sabachina.com.cn.mygithub.request.AlbumOperation;
-import mlearn.sabachina.com.cn.mygithub.util.FileUtil;
-import mlearn.sabachina.com.cn.mygithub.request.IconLocation;
-import mlearn.sabachina.com.cn.mygithub.request.PhotoPicker;
 import mlearn.sabachina.com.cn.mygithub.R;
-import mlearn.sabachina.com.cn.mygithub.request.Style;
+import mlearn.sabachina.com.cn.photoselect.request.AlbumOperation;
+import mlearn.sabachina.com.cn.photoselect.request.CheckMarkStyle;
+import mlearn.sabachina.com.cn.photoselect.request.IconLocation;
+import mlearn.sabachina.com.cn.photoselect.request.PhotoPicker;
+import mlearn.sabachina.com.cn.photoselect.util.FileUtil;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.album:
                 AlbumOperation operation = new AlbumOperation.Builder()
-                        .needShowCameraIcon(false)
-                        .marginSelectedSign(20)
-                        .maxNum(3)
+                        .marginSelectedSign(12)
+                        .maxNum(4)
                         .column(3)
-                        .style(Style.PICTURE)
+                        .style(CheckMarkStyle.DIGIT)
                         .location(IconLocation.TOP_RIGHT)
                         .selectResId(R.drawable.checkbox)
                         .unSelectResId(R.drawable.checkbox_un)
+                        .albumTitleBarColor(R.color.colorAlbum)
                         .build();
                 PhotoPicker.getAlbum()
                         .requestCode(4)

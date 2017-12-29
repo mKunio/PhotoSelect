@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SectorIndicatorView">
+        <attr name="strokeColor" format="integer" />
+        <attr name="inside_color" format="integer" />
+        <attr name="inside_text_color" format="integer" />
+        <attr name="circle_width" format="float" />
+    </declare-styleable>
+</resources>

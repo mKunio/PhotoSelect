@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@color/colorAccent"
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:src="@drawable/left_back" />
+
+        <TextView
+            android:id="@+id/photo_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/back"
+            android:gravity="start|center_vertical"
+            android:text="全部图片"
+            android:textColor="@color/white"
+            android:drawableEnd="@drawable/more_unfold"
+            android:drawablePadding="3dp"
+            android:textSize="16sp" />
+
+        <!--<ImageView-->
+            <!--android:id="@+id/choose_folder"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_toEndOf="@id/photo_folder"-->
+            <!--android:src="@drawable/more_unfold" />-->
+
+        <TextView
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="确定"
+            android:textColor="@drawable/select_color_text"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/photo_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/album_grid_bg"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:horizontalSpacing="3dp"
+            android:verticalSpacing="3dp" />
+
+        <View
+            android:id="@+id/grid_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33333232"
+            android:visibility="gone" />
+
+        <ListView
+            android:divider="@color/text_pressed"
+            android:dividerHeight="1dp"
+            android:id="@+id/photo_folder_list"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:scrollbars="none"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>
