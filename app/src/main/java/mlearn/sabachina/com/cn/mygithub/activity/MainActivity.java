@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //图片标识中未选中的资源文件图片
                         .unSelectResId(R.drawable.checkbox_un)
                         //数字标识中内圈圆颜色
-                        .digitInSideColor(R.color.colorPrimary)
+                        .digitInSideColor(R.color.colorAlbum)
                         //相册页面顶布局背景颜色(带状态栏)
                         .albumTitleBarColor(R.color.colorAlbum)
                         .build();
