@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PhotoPicker.getAlbum()
                         .requestCode(4)
                         .albumOperation(operation)
+                        .imageLoader(new ImageLoader())
                         .start(this);
                 break;
         }

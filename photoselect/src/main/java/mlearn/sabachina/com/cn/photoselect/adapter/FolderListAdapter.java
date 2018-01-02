@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import java.util.Set;
 
 import mlearn.sabachina.com.cn.photoselect.R;
 import mlearn.sabachina.com.cn.photoselect.bean.Photo;
+import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
 import mlearn.sabachina.com.cn.photoselect.widget.SquareImageView;
 
 /**
@@ -27,6 +28,7 @@ public class FolderListAdapter extends BaseAdapter {
     private Context context;
     private List<String> folders;
     private int currentPosition;
+    private BaseImageLoader loader;
 
     public FolderListAdapter(Map<String, List<Photo>> dirPhotos, Context context) {
         Set<String> folderName = dirPhotos.keySet();
@@ -36,6 +38,10 @@ public class FolderListAdapter extends BaseAdapter {
         }
         this.dirPhotos = dirPhotos;
         this.context = context;
+    }
+
+    public void setLoader(BaseImageLoader loader) {
+        this.loader = loader;
     }
 
     @Override
@@ -77,7 +83,11 @@ public class FolderListAdapter extends BaseAdapter {
         buffer.append(photos.size());
         buffer.append(")");
         viewHolder.folderName.setText(buffer);
-        Glide.with(context).load(photos.get(0).getFilePath()).asBitmap().error(R.drawable.image_holder).into(viewHolder.imageView);
+        String filePath = photos.get(0).getFilePath();
+//        Glide.with(context).load(filePath).asBitmap().error(R.drawable.image_holder).into(viewHolder.imageView);
+        if (loader != null) {
+            loader.load(filePath, viewHolder.imageView,context);
+        }
         return convertView;
     }
 

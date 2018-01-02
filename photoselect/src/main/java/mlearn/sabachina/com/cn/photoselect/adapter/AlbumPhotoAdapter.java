@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ import java.util.List;
 import mlearn.sabachina.com.cn.photoselect.R;
 import mlearn.sabachina.com.cn.photoselect.activity.AlbumActivity;
 import mlearn.sabachina.com.cn.photoselect.bean.Photo;
+import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
 import mlearn.sabachina.com.cn.photoselect.request.AlbumOperation;
 import mlearn.sabachina.com.cn.photoselect.request.CheckMarkStyle;
 import mlearn.sabachina.com.cn.photoselect.widget.SectorIndicatorView;
@@ -32,12 +33,17 @@ public class AlbumPhotoAdapter extends BaseAdapter {
     private AlbumActivity activity;
     private ArrayList<Photo> selectPhoto;
     private AlbumOperation albumOperation;
+    private BaseImageLoader loader;
 
     public AlbumPhotoAdapter(AlbumOperation albumOperation, List<Photo> photos, AlbumActivity activity) {
         selectPhoto = new ArrayList<>();
         photoList = photos;
         this.activity = activity;
         this.albumOperation = albumOperation;
+    }
+
+    public void setLoader(BaseImageLoader loader) {
+        this.loader = loader;
     }
 
     public void setPhotoList(List<Photo> photoList) {
@@ -64,14 +70,14 @@ public class AlbumPhotoAdapter extends BaseAdapter {
             if (albumOperation.getStyle() == CheckMarkStyle.PICTURE || photo.isSelected()) {
                 notifySingleItemView(photo, viewHolder);
             } else {
-                notifyAllItemView(photo);
+                notifyVisiableItemView(photo);
             }
         } else {
             Toast.makeText(activity, "您最多可选择" + albumOperation.getMaxNum() + "张图片", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void notifyAllItemView(Photo changePhoto) {
+    private void notifyVisiableItemView(Photo changePhoto) {
         for (Photo photo : selectPhoto) {
             if (photo.getNumber() > changePhoto.getNumber()) {
                 photo.setNumber(photo.getNumber() - 1);
@@ -84,8 +90,7 @@ public class AlbumPhotoAdapter extends BaseAdapter {
     private void notifySingleItemView(Photo photo, ViewHolder holder) {
         if (albumOperation.getStyle() == CheckMarkStyle.PICTURE) {
             int resourceId = photo.isSelected() ? albumOperation.getSelectResId() : albumOperation.getUnSelectResId();
-            Glide.with(activity).load(resourceId).asBitmap()
-                    .placeholder(resourceId).error(resourceId).into(holder.checkbox);
+            holder.checkbox.setImageResource(resourceId);
         } else {
             photo.setNumber(selectPhoto.size());
             holder.indicatorView.setText(photo.getNumber());
@@ -145,12 +150,12 @@ public class AlbumPhotoAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Photo photo = getItem(position);
-        Glide.with(activity).load(photo.getFilePath()).asBitmap()
-                .placeholder(R.drawable.image_holder).error(R.drawable.image_holder).into(viewHolder.photo);
+        if (loader != null) {
+            loader.load(photo.getFilePath(), viewHolder.photo, activity);
+        }
         if (checkMarkStyle == CheckMarkStyle.PICTURE) {
             int resourceId = photo.isSelected() ? albumOperation.getSelectResId() : albumOperation.getUnSelectResId();
-            Glide.with(activity).load(resourceId).asBitmap()
-                    .placeholder(R.drawable.checkbox_un).error(R.drawable.checkbox_un).into(viewHolder.checkbox);
+            viewHolder.checkbox.setImageResource(resourceId);
         } else {
             viewHolder.indicatorView.setText(photo.getNumber());
         }

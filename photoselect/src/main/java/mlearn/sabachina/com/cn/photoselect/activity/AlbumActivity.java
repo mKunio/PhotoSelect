@@ -21,6 +21,7 @@ import mlearn.sabachina.com.cn.photoselect.adapter.AlbumPhotoAdapter;
 import mlearn.sabachina.com.cn.photoselect.adapter.FolderListAdapter;
 import mlearn.sabachina.com.cn.photoselect.bean.Photo;
 import mlearn.sabachina.com.cn.photoselect.callback.PhotoSuccessCallback;
+import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
 import mlearn.sabachina.com.cn.photoselect.request.AlbumOperation;
 import mlearn.sabachina.com.cn.photoselect.util.AnimUtils;
 import mlearn.sabachina.com.cn.photoselect.util.PhotoStore;
@@ -37,6 +38,7 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
     private AlbumOperation albumOperation;
     private View gridBg;
     private ListView photoFolderList;
+    private BaseImageLoader loader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
     private void getDataFromIntent() {
         Intent intent = getIntent();
         albumOperation = intent.getParcelableExtra("albumOperation");
+        loader = intent.getParcelableExtra("loader");
     }
 
     private void findViews() {
@@ -108,11 +111,14 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
     public void onResultCallback(Map<String, List<Photo>> dirPhotos) {
         System.out.println(System.currentTimeMillis() - time + "毫秒");
         FolderListAdapter adapter = new FolderListAdapter(dirPhotos, this);
+        adapter.setLoader(loader);
         photoFolderList.setAdapter(adapter);
         photoFolderList.setOnItemClickListener(this);
         List<Photo> allPhotos = dirPhotos.get("全部图片");
         photoGridView.setNumColumns(albumOperation.getColumn());
-        photoGridView.setAdapter(new AlbumPhotoAdapter(albumOperation, allPhotos, this));
+        AlbumPhotoAdapter albumPhotoAdapter = new AlbumPhotoAdapter(albumOperation, allPhotos, this);
+        albumPhotoAdapter.setLoader(loader);
+        photoGridView.setAdapter(albumPhotoAdapter);
         photoGridView.setOnItemClickListener(this);
     }
 
