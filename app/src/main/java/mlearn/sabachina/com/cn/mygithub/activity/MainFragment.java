@@ -1,41 +1,35 @@
 package mlearn.sabachina.com.cn.mygithub.activity;
 
-import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
-
-import java.util.ArrayList;
+import android.view.ViewGroup;
 
 import mlearn.sabachina.com.cn.mygithub.R;
-import mlearn.sabachina.com.cn.photoselect.bean.Photo;
 import mlearn.sabachina.com.cn.photoselect.request.AlbumOperation;
-import mlearn.sabachina.com.cn.photoselect.request.AlbumTarget;
 import mlearn.sabachina.com.cn.photoselect.request.CheckMarkStyle;
 import mlearn.sabachina.com.cn.photoselect.request.IconLocation;
 import mlearn.sabachina.com.cn.photoselect.request.PhotoPicker;
 import mlearn.sabachina.com.cn.photoselect.util.FileUtil;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * Created by zhc on 2018/1/2 0002.
+ */
 
+public class MainFragment extends Fragment implements View.OnClickListener {
     private Uri uri;
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-//        FragmentManager manager = getSupportFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.add(R.id.content,new MainFragment());
-//        transaction.commit();
-        View takePhoto = findViewById(R.id.take_photo);
-        View album = findViewById(R.id.album);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_main,container,false);
+        View takePhoto = view.findViewById(R.id.take_photo);
+        View album = view.findViewById(R.id.album);
         takePhoto.setOnClickListener(this);
         album.setOnClickListener(this);
+        return view;
     }
 
     @Override
@@ -78,24 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .imageLoader(new ImageLoader())
                         .start(this);
                 break;
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //相机返回resultCode 为0
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 3) {
-                //相机
-                Log.d("Photo", "onActivityResult: " + uri.getPath());
-            }
-            if (requestCode == 4) {
-                ArrayList<Photo> photos = data.getParcelableArrayListExtra(AlbumTarget.ALBUM_SELECT_PHOTO);
-                for (Photo photo : photos) {
-                    Log.d("Photo", "onActivityResult: " + photo.getFilePath());
-                }
-            }
         }
     }
 }

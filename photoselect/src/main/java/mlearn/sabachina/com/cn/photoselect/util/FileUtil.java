@@ -13,14 +13,14 @@ import java.util.Locale;
  */
 
 public class FileUtil {
-    private static final String ROOT = "temp_photo";
+    private static final String ROOT = "photoselect";
     private static final String IMAGE = "images";
 
     public static Uri getDefaultUri() {
         String time = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File file = new File(getRootFile(), IMAGE);
         if (!file.exists()) {
-            file.mkdirs();
+            boolean mkdirs = file.mkdirs();
         }
         File targetFile = new File(file, time + ".jpg");
         return Uri.fromFile(targetFile);

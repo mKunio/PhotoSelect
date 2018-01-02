@@ -10,6 +10,7 @@ import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
  */
 
 public interface AlbumTarget {
+    String ALBUM_SELECT_PHOTO = "album_select_photo";
     AlbumTarget albumOperation(AlbumOperation albumOperation);
 
     AlbumTarget requestCode(int requestCode);

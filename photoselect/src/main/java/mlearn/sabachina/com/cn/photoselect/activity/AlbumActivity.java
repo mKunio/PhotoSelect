@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import mlearn.sabachina.com.cn.photoselect.bean.Photo;
 import mlearn.sabachina.com.cn.photoselect.callback.PhotoSuccessCallback;
 import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
 import mlearn.sabachina.com.cn.photoselect.request.AlbumOperation;
+import mlearn.sabachina.com.cn.photoselect.request.AlbumTarget;
 import mlearn.sabachina.com.cn.photoselect.util.AnimUtils;
 import mlearn.sabachina.com.cn.photoselect.util.PhotoStore;
 
@@ -80,7 +82,6 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
         int i = v.getId();
         if (i == R.id.back) {
             finish();
-
         } else if (i == R.id.photo_folder) {
             if (photoFolderList.getVisibility() == View.GONE) {
                 AnimUtils.slideDownToShow(photoFolderList, gridBg);
@@ -89,6 +90,11 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
             }
 
         } else if (i == R.id.confirm) {
+            AlbumPhotoAdapter adapter = (AlbumPhotoAdapter) photoGridView.getAdapter();
+            ArrayList<Photo> selectPhoto = adapter.getSelectPhoto();
+            Intent intent = new Intent();
+            intent.putParcelableArrayListExtra(AlbumTarget.ALBUM_SELECT_PHOTO, selectPhoto);
+            setResult(RESULT_OK, intent);
             finish();
 
         } else if (i == R.id.grid_bg) {
