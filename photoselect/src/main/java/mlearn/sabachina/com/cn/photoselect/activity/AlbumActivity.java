@@ -26,14 +26,14 @@ import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
 import mlearn.sabachina.com.cn.photoselect.request.AlbumOperation;
 import mlearn.sabachina.com.cn.photoselect.request.AlbumTarget;
 import mlearn.sabachina.com.cn.photoselect.util.AnimUtils;
-import mlearn.sabachina.com.cn.photoselect.util.PhotoStore;
+import mlearn.sabachina.com.cn.photoselect.util.PictureManager;
 
 /**
  * Created by zhc on 2017/10/31 0031.
  */
 
 public class AlbumActivity extends AppCompatActivity implements View.OnClickListener,
-        PhotoSuccessCallback<Photo>, AdapterView.OnItemClickListener {
+        PhotoSuccessCallback, AdapterView.OnItemClickListener {
 
     private TextView photoFolder;
     private GridView photoGridView;
@@ -92,22 +92,20 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
         } else if (i == R.id.confirm) {
             AlbumPhotoAdapter adapter = (AlbumPhotoAdapter) photoGridView.getAdapter();
             ArrayList<Photo> selectPhoto = adapter.getSelectPhoto();
-            Intent intent = new Intent();
-            intent.putParcelableArrayListExtra(AlbumTarget.ALBUM_SELECT_PHOTO, selectPhoto);
-            setResult(RESULT_OK, intent);
-            finish();
-
+            if (selectPhoto.size() != 0) {
+                Intent intent = new Intent();
+                intent.putParcelableArrayListExtra(AlbumTarget.ALBUM_SELECT_PHOTO, selectPhoto);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         } else if (i == R.id.grid_bg) {
             AnimUtils.slideUpToClose(photoFolderList, gridBg);
-
         }
     }
 
-    private long time;
-
     private void getPicture() {
-        time = System.currentTimeMillis();
-        PhotoStore.getAllPhoto(this, getApplicationContext(), this);
+        PictureManager manager = new PictureManager();
+        manager.getAllPhoto(this, getApplicationContext(), this);
     }
 
     /**
@@ -115,7 +113,6 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     public void onResultCallback(Map<String, List<Photo>> dirPhotos) {
-        System.out.println(System.currentTimeMillis() - time + "毫秒");
         FolderListAdapter adapter = new FolderListAdapter(dirPhotos, this);
         adapter.setLoader(loader);
         photoFolderList.setAdapter(adapter);

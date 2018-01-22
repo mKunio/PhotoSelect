@@ -21,7 +21,7 @@ import mlearn.sabachina.com.cn.photoselect.bean.Photo;
 
 public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor> {
     private Context context;
-    private PhotoSuccessCallback<Photo> resultCallback;
+    private PhotoSuccessCallback resultCallback;
     private final String[] IMAGE_PROJECTION = {
             MediaStore.Images.Media._ID,
             MediaStore.Images.Media.DATA,
@@ -29,7 +29,7 @@ public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Curso
             MediaStore.Images.Media.TITLE
     };
 
-    public PhotoLoaderCallbacks(Context context, PhotoSuccessCallback<Photo> resultCallback) {
+    public PhotoLoaderCallbacks(Context context, PhotoSuccessCallback resultCallback) {
         this.context = context;
         this.resultCallback = resultCallback;
     }
