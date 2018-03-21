@@ -101,7 +101,7 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.CAMERA"/>
    ```
-   ## 补充
+   **补充**</br>
    为尽量避免代码重复，如果您的项目需要适配Android6.0或者7.0，请自行判断，选择相册图片时设置的imageLoader请继承自BaseLmageLoader
    且自行实现Parcelable代码
    ## License
