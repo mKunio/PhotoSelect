@@ -33,9 +33,7 @@ public class FolderListAdapter extends BaseAdapter {
     public FolderListAdapter(Map<String, List<Photo>> dirPhotos, Context context) {
         Set<String> folderName = dirPhotos.keySet();
         this.folders = new ArrayList<>();
-        for (String f : folderName) {
-            this.folders.add(f);
-        }
+        this.folders.addAll(folderName);
         this.dirPhotos = dirPhotos;
         this.context = context;
     }
