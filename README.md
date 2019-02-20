@@ -35,7 +35,7 @@
 *  Add the dependency ：<br>
   ```
 	dependencies {
-	        compile 'com.github.mKunio:PhotoSelect:v1.3'
+	        implementation 'com.github.mKunio:PhotoSelect:v1.4'
 	}
   ```
   # **示例代码**
