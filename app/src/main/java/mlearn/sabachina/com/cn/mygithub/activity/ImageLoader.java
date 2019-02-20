@@ -1,22 +1,28 @@
 package mlearn.sabachina.com.cn.mygithub.activity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 
 import mlearn.sabachina.com.cn.mygithub.R;
 import mlearn.sabachina.com.cn.photoselect.imageloader.BaseImageLoader;
+
+import static com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade;
+
 
 /**
  * Created by zhc on 2018/1/2 0002.
  */
 
-public class ImageLoader extends  BaseImageLoader {
+public class ImageLoader extends BaseImageLoader {
+
     @Override
     public void load(String filePath, ImageView imageView, Context context) {
-        Glide.with(context).load(filePath).asBitmap().placeholder(R.drawable.image_holder).into(imageView);
+        Glide.with(context).asBitmap().load(filePath).transition(withCrossFade()).placeholder(R.drawable.image_holder).into(imageView);
     }
 
     @Override
