@@ -1,6 +1,6 @@
 package mlearn.sabachina.com.cn.photoselect.callback;
 
-/**
+/*
  * Created by zhc on 2017/11/1 0001.
  */
 
@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -34,6 +35,7 @@ public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Curso
         this.resultCallback = resultCallback;
     }
 
+    @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(context, MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -41,7 +43,7 @@ public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Curso
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
 
         if (data == null) return;
         Map<String, List<Photo>> dirPhoto = new LinkedHashMap<>();
@@ -79,7 +81,7 @@ public class PhotoLoaderCallbacks implements LoaderManager.LoaderCallbacks<Curso
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
     }
 }

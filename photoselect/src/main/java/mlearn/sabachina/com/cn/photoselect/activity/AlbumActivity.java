@@ -64,11 +64,11 @@ public class AlbumActivity extends AppCompatActivity implements View.OnClickList
 
     private void findViews() {
         View back = findViewById(R.id.back);
-        photoFolder = (TextView) findViewById(R.id.photo_folder);
+        photoFolder = findViewById(R.id.photo_folder);
         View confirm = findViewById(R.id.confirm);
-        photoGridView = (GridView) findViewById(R.id.photo_grid_view);
+        photoGridView = findViewById(R.id.photo_grid_view);
         gridBg = findViewById(R.id.grid_bg);
-        photoFolderList = (ListView) findViewById(R.id.photo_folder_list);
+        photoFolderList = findViewById(R.id.photo_folder_list);
         View titleBar = findViewById(R.id.title_bar);
         titleBar.setBackgroundColor(getResources().getColor(albumOperation.getAlbumTitleBarColor()));
         back.setOnClickListener(this);
